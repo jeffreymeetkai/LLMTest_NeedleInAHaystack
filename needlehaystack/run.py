@@ -15,7 +15,7 @@ class CommandArgs():
     provider: str = "openai"
     evaluator: str = "openai"
     model_name: str = "gpt-3.5-turbo-0125"
-    evaluator_model_name: Optional[str] = "gpt-3.5-turbo-0125"
+    evaluator_model_name: Optional[str] = "gpt-4o"
     needle: Optional[str] = "\nThe best thing to do in San Francisco is eat a sandwich and sit in Dolores Park on a sunny day.\n"
     haystack_dir: Optional[str] = "PaulGrahamEssays"
     retrieval_question: Optional[str] = "What is the best thing to do in San Francisco?"
@@ -30,8 +30,8 @@ class CommandArgs():
     document_depth_percents: Optional[list[int]] = None
     document_depth_percent_interval_type: Optional[str] = "linear"
     num_concurrent_requests: Optional[int] = 1
-    save_results: Optional[bool] = True
-    save_contexts: Optional[bool] = True
+    save_results: Optional[bool] = False
+    save_contexts: Optional[bool] = False
     final_context_length_buffer: Optional[int] = 200
     seconds_to_sleep_between_completions: Optional[float] = None
     print_ongoing_status: Optional[bool] = True

@@ -64,10 +64,12 @@ class Llama(ModelProvider):
 
         final_prompt = self.tokenizer.apply_chat_template(prompt, tokenize=False, add_generation_prompt=True)
         inputs = self.tokenizer(final_prompt, return_tensors="pt")
+        print(f"Content length: {len(inputs['input_ids'][0])}")
         outputs = self.model.generate(**inputs.to(self.model.device), **self.model_kwargs)
         
-        breakpoint()
-        return response.choices[0].message.content
+        response = self.tokenizer.decode(outputs[0], skip_special_tokens=False).removeprefix(self.tokenizer.bos_token)[len(final_prompt):].removesuffix(self.tokenizer.eos_token)
+
+        return response
     
     def generate_prompt(self, context: str, retrieval_question: str) -> str | list[dict[str, str]]:
         """
