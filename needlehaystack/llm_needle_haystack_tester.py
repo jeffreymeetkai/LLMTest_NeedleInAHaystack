@@ -200,8 +200,11 @@ class LLMNeedleHaystackTester:
                 os.makedirs('results')
 
             # Save the result to file for retesting
-            with open(f'results/{context_file_location}_results.json', 'w') as f:
-                json.dump(results, f)
+            # with open(f'results/{context_file_location}_results.json', 'w') as f:
+            #     json.dump(results, f)
+            with open("/workspace/results/results.json", "a") as f:
+                json.dump(results, f, indent=4)
+                f.write(",\n")
 
         if self.seconds_to_sleep_between_completions:
             await asyncio.sleep(self.seconds_to_sleep_between_completions)
